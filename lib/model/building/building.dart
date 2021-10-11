@@ -9,17 +9,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'building.freezed.dart';
 part 'building.g.dart';
 
-String _idToJson(Id id)=> id.id;
-Id _idFromJson(String id) =>Id(id);
-// String _addressToJson(Address name)=> name.address;
-// Address _addressFromJson(String address) =>Address(address);
+String _idToJson(Id _id)=> _id.id;
+Id _idFromJson(String _id) =>Id(_id);
+Id _userToJson(UserId user)=> user.id;
+UserId _userFromJson(String id) =>UserId(id: Id(id));
 
 @freezed
-class Building with _$Building{
-  const factory Building({
-    @JsonKey(toJson: _idToJson,fromJson: _idFromJson) required Id id,
+class BuildingModel with _$BuildingModel{
+  const factory BuildingModel.full({
+    @JsonKey(name:'_id',toJson: _idToJson,fromJson: _idFromJson)
+    required Id id,
     required BuildingProfile profile,
-    required User owner}) = _Building;
-  const factory Building.id({ @JsonKey(toJson: _idToJson,fromJson: _idFromJson) required Id id}) = BuildingId;
-  factory Building.fromJson(Map<String,dynamic> json) => _$BuildingFromJson(json);
+    @JsonKey(toJson: _userToJson,fromJson: _userFromJson)
+    required UserId owner}) = Building;
+  const factory BuildingModel.id({ @JsonKey(name:'_id',toJson: _idToJson,fromJson: _idFromJson) required Id id}) = BuildingId;
+  factory BuildingModel.fromJson(Map<String,dynamic> json) => _$BuildingModelFromJson(json);
 }

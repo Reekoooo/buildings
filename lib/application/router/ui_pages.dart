@@ -21,6 +21,7 @@ part 'ui_pages.freezed.dart';
 const String SplashPath = '/splash';
 const String LoginPath = '/login';
 const String SignUpPath = '/signUp';
+const String UserProfilePath = '/userProfile';
 const String HomePath = '/home';
 
 @freezed
@@ -29,12 +30,14 @@ class PageConfiguration with _$PageConfiguration{
   const factory PageConfiguration.splash({@Default(NoPageAction())PageAction currentPageAction}) = SplashConfig;
   const factory PageConfiguration.login({@Default(NoPageAction()) PageAction currentPageAction}) = LoginConfig;
   const factory PageConfiguration.signUp({@Default(NoPageAction()) PageAction currentPageAction}) = SignUpConfig;
+  const factory PageConfiguration.userProfile({@Default(NoPageAction()) PageAction currentPageAction}) = UserProfileConfig;
   const factory PageConfiguration.home({@Default(NoPageAction()) PageAction currentPageAction}) = HomeConfig;
 
   String get path => this.map(
       splash: (_)=>SplashPath,
       login: (_) => LoginPath,
       signUp: (_) => SignUpPath,
+      userProfile: (_) => UserProfilePath,
       home: (_) => HomePath);
 }
 

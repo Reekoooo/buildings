@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:building/application/router/page_action.dart';
 import 'package:building/application/router/ui_pages.dart';
+import 'package:building/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String LOGGED_IN_KEY = 'loggedIn';
+
 
 class AppState extends ChangeNotifier {
 

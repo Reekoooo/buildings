@@ -1,4 +1,4 @@
-import 'package:building/utils/validation_exception.dart';
+import 'package:building/utils/custom_exceptions/validation_exception.dart';
 
 const int MIN_ALLOWED_NO = 1;
 

@@ -6,13 +6,12 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_User _$_$_UserFromJson(Map<String, dynamic> json) {
-  return _$_User(
-    id: _idFromJson(json['id'] as String),
+_$User _$_$UserFromJson(Map<String, dynamic> json) {
+  return _$User(
+    id: _idFromJson(json['_id'] as String),
     profile: _userProfileFromJson(json['profile'] as Map<String, dynamic>?),
     email: _emailFromJson(json['email'] as String),
     role: _$enumDecode(_$RoleEnumMap, json['role']),
-    token: json['token'] as String,
     buildingOwner: (json['buildingOwner'] as List<dynamic>?)
             ?.map((e) => Building.fromJson(e as Map<String, dynamic>))
             .toList() ??
@@ -28,7 +27,7 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_UserToJson(_$_User instance) {
+Map<String, dynamic> _$_$UserToJson(_$User instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -37,11 +36,10 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) {
     }
   }
 
-  writeNotNull('id', _idToJson(instance.id));
+  writeNotNull('_id', _idToJson(instance.id));
   writeNotNull('profile', _userProfileToJson(instance.profile));
   writeNotNull('email', _emailToJson(instance.email));
   val['role'] = _$RoleEnumMap[instance.role];
-  val['token'] = instance.token;
   val['buildingOwner'] = instance.buildingOwner.map((e) => e.toJson()).toList();
   val['flatOwner'] = instance.flatOwner.map((e) => e.toJson()).toList();
   val['flatResident'] = instance.flatResident.map((e) => e.toJson()).toList();
@@ -81,10 +79,19 @@ const _$RoleEnumMap = {
 
 _$UserId _$_$UserIdFromJson(Map<String, dynamic> json) {
   return _$UserId(
-    id: _idFromJson(json['id'] as String),
+    id: _idFromJson(json['_id'] as String),
   );
 }
 
 Map<String, dynamic> _$_$UserIdToJson(_$UserId instance) => <String, dynamic>{
-      'id': _idToJson(instance.id),
+      '_id': _idToJson(instance.id),
     };
+
+_$UnAuthenticatedUser _$_$UnAuthenticatedUserFromJson(
+    Map<String, dynamic> json) {
+  return _$UnAuthenticatedUser();
+}
+
+Map<String, dynamic> _$_$UnAuthenticatedUserToJson(
+        _$UnAuthenticatedUser instance) =>
+    <String, dynamic>{};

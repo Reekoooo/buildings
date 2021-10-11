@@ -1,7 +1,7 @@
 
 import 'package:building/model/value_objects/email.dart';
 import 'package:building/model/value_objects/password.dart';
-import 'package:building/utils/validation_exception.dart';
+import 'package:building/utils/custom_exceptions/validation_exception.dart';
 import 'package:test/test.dart';
 
 void main() {

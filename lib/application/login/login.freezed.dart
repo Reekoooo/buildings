@@ -19,12 +19,10 @@ class _$LoginTearOff {
   _Login call(
       {required Email email,
       required Password password,
-      required Password passwordConfirm,
       required bool rememberMe}) {
     return _Login(
       email: email,
       password: password,
-      passwordConfirm: passwordConfirm,
       rememberMe: rememberMe,
     );
   }
@@ -37,7 +35,6 @@ const $Login = _$LoginTearOff();
 mixin _$Login {
   Email get email => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
-  Password get passwordConfirm => throw _privateConstructorUsedError;
   bool get rememberMe => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -48,11 +45,7 @@ mixin _$Login {
 abstract class $LoginCopyWith<$Res> {
   factory $LoginCopyWith(Login value, $Res Function(Login) then) =
       _$LoginCopyWithImpl<$Res>;
-  $Res call(
-      {Email email,
-      Password password,
-      Password passwordConfirm,
-      bool rememberMe});
+  $Res call({Email email, Password password, bool rememberMe});
 }
 
 /// @nodoc
@@ -67,7 +60,6 @@ class _$LoginCopyWithImpl<$Res> implements $LoginCopyWith<$Res> {
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
-    Object? passwordConfirm = freezed,
     Object? rememberMe = freezed,
   }) {
     return _then(_value.copyWith(
@@ -78,10 +70,6 @@ class _$LoginCopyWithImpl<$Res> implements $LoginCopyWith<$Res> {
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as Password,
-      passwordConfirm: passwordConfirm == freezed
-          ? _value.passwordConfirm
-          : passwordConfirm // ignore: cast_nullable_to_non_nullable
               as Password,
       rememberMe: rememberMe == freezed
           ? _value.rememberMe
@@ -96,11 +84,7 @@ abstract class _$LoginCopyWith<$Res> implements $LoginCopyWith<$Res> {
   factory _$LoginCopyWith(_Login value, $Res Function(_Login) then) =
       __$LoginCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {Email email,
-      Password password,
-      Password passwordConfirm,
-      bool rememberMe});
+  $Res call({Email email, Password password, bool rememberMe});
 }
 
 /// @nodoc
@@ -116,7 +100,6 @@ class __$LoginCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
-    Object? passwordConfirm = freezed,
     Object? rememberMe = freezed,
   }) {
     return _then(_Login(
@@ -127,10 +110,6 @@ class __$LoginCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as Password,
-      passwordConfirm: passwordConfirm == freezed
-          ? _value.passwordConfirm
-          : passwordConfirm // ignore: cast_nullable_to_non_nullable
               as Password,
       rememberMe: rememberMe == freezed
           ? _value.rememberMe
@@ -144,23 +123,18 @@ class __$LoginCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
 
 class _$_Login implements _Login {
   const _$_Login(
-      {required this.email,
-      required this.password,
-      required this.passwordConfirm,
-      required this.rememberMe});
+      {required this.email, required this.password, required this.rememberMe});
 
   @override
   final Email email;
   @override
   final Password password;
   @override
-  final Password passwordConfirm;
-  @override
   final bool rememberMe;
 
   @override
   String toString() {
-    return 'Login(email: $email, password: $password, passwordConfirm: $passwordConfirm, rememberMe: $rememberMe)';
+    return 'Login(email: $email, password: $password, rememberMe: $rememberMe)';
   }
 
   @override
@@ -172,9 +146,6 @@ class _$_Login implements _Login {
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
-            (identical(other.passwordConfirm, passwordConfirm) ||
-                const DeepCollectionEquality()
-                    .equals(other.passwordConfirm, passwordConfirm)) &&
             (identical(other.rememberMe, rememberMe) ||
                 const DeepCollectionEquality()
                     .equals(other.rememberMe, rememberMe)));
@@ -185,7 +156,6 @@ class _$_Login implements _Login {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(password) ^
-      const DeepCollectionEquality().hash(passwordConfirm) ^
       const DeepCollectionEquality().hash(rememberMe);
 
   @JsonKey(ignore: true)
@@ -198,15 +168,12 @@ abstract class _Login implements Login {
   const factory _Login(
       {required Email email,
       required Password password,
-      required Password passwordConfirm,
       required bool rememberMe}) = _$_Login;
 
   @override
   Email get email => throw _privateConstructorUsedError;
   @override
   Password get password => throw _privateConstructorUsedError;
-  @override
-  Password get passwordConfirm => throw _privateConstructorUsedError;
   @override
   bool get rememberMe => throw _privateConstructorUsedError;
   @override

@@ -41,18 +41,22 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You can choose profile picture</string>
+	<key>NSCameraUsageDescription</key>
+	<string>You can take a profile pictue</string>
 	<key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-    	<key>CFBundleTypeRole</key>
-    	<string>Editor</string>
-    	<key>CFBundleURLName</key>
-    	<string>deeplinks</string>
-    	<key>CFBundleURLSchemes</key>
-    	<array>
-    		<string>navapp</string>
-    	</array>
-    	</dict>
-    </array>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>deeplinks</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>navapp</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

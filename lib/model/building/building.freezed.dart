@@ -12,10 +12,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Building _$BuildingFromJson(Map<String, dynamic> json) {
+BuildingModel _$BuildingModelFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
-    case 'default':
-      return _Building.fromJson(json);
+    case 'full':
+      return Building.fromJson(json);
     case 'id':
       return BuildingId.fromJson(json);
 
@@ -25,14 +25,16 @@ Building _$BuildingFromJson(Map<String, dynamic> json) {
 }
 
 /// @nodoc
-class _$BuildingTearOff {
-  const _$BuildingTearOff();
+class _$BuildingModelTearOff {
+  const _$BuildingModelTearOff();
 
-  _Building call(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required Id id,
+  Building full(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required Id id,
       required BuildingProfile profile,
-      required User owner}) {
-    return _Building(
+      @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+          required UserId owner}) {
+    return Building(
       id: id,
       profile: profile,
       owner: owner,
@@ -40,78 +42,93 @@ class _$BuildingTearOff {
   }
 
   BuildingId id(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required Id id}) {
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required Id id}) {
     return BuildingId(
       id: id,
     );
   }
 
-  Building fromJson(Map<String, Object> json) {
-    return Building.fromJson(json);
+  BuildingModel fromJson(Map<String, Object> json) {
+    return BuildingModel.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Building = _$BuildingTearOff();
+const $BuildingModel = _$BuildingModelTearOff();
 
 /// @nodoc
-mixin _$Building {
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+mixin _$BuildingModel {
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   Id get id => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id,
-            BuildingProfile profile, User owner)
-        $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id,
+            BuildingProfile profile,
+            @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+                UserId owner)
+        full,
+    required TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)
         id,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id,
-            BuildingProfile profile, User owner)?
-        $default, {
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)?
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id,
+            BuildingProfile profile,
+            @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+                UserId owner)?
+        full,
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)?
         id,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Building value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(Building value) full,
     required TResult Function(BuildingId value) id,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Building value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Building value)? full,
     TResult Function(BuildingId value)? id,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BuildingCopyWith<Building> get copyWith =>
+  $BuildingModelCopyWith<BuildingModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BuildingCopyWith<$Res> {
-  factory $BuildingCopyWith(Building value, $Res Function(Building) then) =
-      _$BuildingCopyWithImpl<$Res>;
-  $Res call({@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id});
+abstract class $BuildingModelCopyWith<$Res> {
+  factory $BuildingModelCopyWith(
+          BuildingModel value, $Res Function(BuildingModel) then) =
+      _$BuildingModelCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson) Id id});
 }
 
 /// @nodoc
-class _$BuildingCopyWithImpl<$Res> implements $BuildingCopyWith<$Res> {
-  _$BuildingCopyWithImpl(this._value, this._then);
+class _$BuildingModelCopyWithImpl<$Res>
+    implements $BuildingModelCopyWith<$Res> {
+  _$BuildingModelCopyWithImpl(this._value, this._then);
 
-  final Building _value;
+  final BuildingModel _value;
   // ignore: unused_field
-  final $Res Function(Building) _then;
+  final $Res Function(BuildingModel) _then;
 
   @override
   $Res call({
@@ -127,27 +144,26 @@ class _$BuildingCopyWithImpl<$Res> implements $BuildingCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$BuildingCopyWith<$Res> implements $BuildingCopyWith<$Res> {
-  factory _$BuildingCopyWith(_Building value, $Res Function(_Building) then) =
-      __$BuildingCopyWithImpl<$Res>;
+abstract class $BuildingCopyWith<$Res> implements $BuildingModelCopyWith<$Res> {
+  factory $BuildingCopyWith(Building value, $Res Function(Building) then) =
+      _$BuildingCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id,
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson) Id id,
       BuildingProfile profile,
-      User owner});
+      @JsonKey(toJson: _userToJson, fromJson: _userFromJson) UserId owner});
 
   $BuildingProfileCopyWith<$Res> get profile;
-  $UserCopyWith<$Res> get owner;
 }
 
 /// @nodoc
-class __$BuildingCopyWithImpl<$Res> extends _$BuildingCopyWithImpl<$Res>
-    implements _$BuildingCopyWith<$Res> {
-  __$BuildingCopyWithImpl(_Building _value, $Res Function(_Building) _then)
-      : super(_value, (v) => _then(v as _Building));
+class _$BuildingCopyWithImpl<$Res> extends _$BuildingModelCopyWithImpl<$Res>
+    implements $BuildingCopyWith<$Res> {
+  _$BuildingCopyWithImpl(Building _value, $Res Function(Building) _then)
+      : super(_value, (v) => _then(v as Building));
 
   @override
-  _Building get _value => super._value as _Building;
+  Building get _value => super._value as Building;
 
   @override
   $Res call({
@@ -155,7 +171,7 @@ class __$BuildingCopyWithImpl<$Res> extends _$BuildingCopyWithImpl<$Res>
     Object? profile = freezed,
     Object? owner = freezed,
   }) {
-    return _then(_Building(
+    return _then(Building(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -167,7 +183,7 @@ class __$BuildingCopyWithImpl<$Res> extends _$BuildingCopyWithImpl<$Res>
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as User,
+              as UserId,
     ));
   }
 
@@ -177,43 +193,39 @@ class __$BuildingCopyWithImpl<$Res> extends _$BuildingCopyWithImpl<$Res>
       return _then(_value.copyWith(profile: value));
     });
   }
-
-  @override
-  $UserCopyWith<$Res> get owner {
-    return $UserCopyWith<$Res>(_value.owner, (value) {
-      return _then(_value.copyWith(owner: value));
-    });
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Building implements _Building {
-  const _$_Building(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required this.id,
+class _$Building implements Building {
+  const _$Building(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required this.id,
       required this.profile,
-      required this.owner});
+      @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+          required this.owner});
 
-  factory _$_Building.fromJson(Map<String, dynamic> json) =>
-      _$_$_BuildingFromJson(json);
+  factory _$Building.fromJson(Map<String, dynamic> json) =>
+      _$_$BuildingFromJson(json);
 
   @override
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   final Id id;
   @override
   final BuildingProfile profile;
   @override
-  final User owner;
+  @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+  final UserId owner;
 
   @override
   String toString() {
-    return 'Building(id: $id, profile: $profile, owner: $owner)';
+    return 'BuildingModel.full(id: $id, profile: $profile, owner: $owner)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Building &&
+        (other is Building &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.profile, profile) ||
@@ -232,96 +244,112 @@ class _$_Building implements _Building {
 
   @JsonKey(ignore: true)
   @override
-  _$BuildingCopyWith<_Building> get copyWith =>
-      __$BuildingCopyWithImpl<_Building>(this, _$identity);
+  $BuildingCopyWith<Building> get copyWith =>
+      _$BuildingCopyWithImpl<Building>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id,
-            BuildingProfile profile, User owner)
-        $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id,
+            BuildingProfile profile,
+            @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+                UserId owner)
+        full,
+    required TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)
         id,
   }) {
-    return $default(this.id, profile, owner);
+    return full(this.id, profile, owner);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id,
-            BuildingProfile profile, User owner)?
-        $default, {
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)?
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id,
+            BuildingProfile profile,
+            @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+                UserId owner)?
+        full,
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)?
         id,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(this.id, profile, owner);
+    if (full != null) {
+      return full(this.id, profile, owner);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Building value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(Building value) full,
     required TResult Function(BuildingId value) id,
   }) {
-    return $default(this);
+    return full(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Building value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Building value)? full,
     TResult Function(BuildingId value)? id,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(this);
+    if (full != null) {
+      return full(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_BuildingToJson(this)..['runtimeType'] = 'default';
+    return _$_$BuildingToJson(this)..['runtimeType'] = 'full';
   }
 }
 
-abstract class _Building implements Building {
-  const factory _Building(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required Id id,
+abstract class Building implements BuildingModel {
+  const factory Building(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required Id id,
       required BuildingProfile profile,
-      required User owner}) = _$_Building;
+      @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+          required UserId owner}) = _$Building;
 
-  factory _Building.fromJson(Map<String, dynamic> json) = _$_Building.fromJson;
+  factory Building.fromJson(Map<String, dynamic> json) = _$Building.fromJson;
 
   @override
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   Id get id => throw _privateConstructorUsedError;
   BuildingProfile get profile => throw _privateConstructorUsedError;
-  User get owner => throw _privateConstructorUsedError;
+  @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+  UserId get owner => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BuildingCopyWith<_Building> get copyWith =>
+  $BuildingCopyWith<Building> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BuildingIdCopyWith<$Res> implements $BuildingCopyWith<$Res> {
+abstract class $BuildingIdCopyWith<$Res>
+    implements $BuildingModelCopyWith<$Res> {
   factory $BuildingIdCopyWith(
           BuildingId value, $Res Function(BuildingId) then) =
       _$BuildingIdCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id});
+  $Res call(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson) Id id});
 }
 
 /// @nodoc
-class _$BuildingIdCopyWithImpl<$Res> extends _$BuildingCopyWithImpl<$Res>
+class _$BuildingIdCopyWithImpl<$Res> extends _$BuildingModelCopyWithImpl<$Res>
     implements $BuildingIdCopyWith<$Res> {
   _$BuildingIdCopyWithImpl(BuildingId _value, $Res Function(BuildingId) _then)
       : super(_value, (v) => _then(v as BuildingId));
@@ -346,18 +374,19 @@ class _$BuildingIdCopyWithImpl<$Res> extends _$BuildingCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BuildingId implements BuildingId {
   const _$BuildingId(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required this.id});
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required this.id});
 
   factory _$BuildingId.fromJson(Map<String, dynamic> json) =>
       _$_$BuildingIdFromJson(json);
 
   @override
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   final Id id;
 
   @override
   String toString() {
-    return 'Building.id(id: $id)';
+    return 'BuildingModel.id(id: $id)';
   }
 
   @override
@@ -379,12 +408,17 @@ class _$BuildingId implements BuildingId {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id,
-            BuildingProfile profile, User owner)
-        $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id,
+            BuildingProfile profile,
+            @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+                UserId owner)
+        full,
+    required TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)
         id,
   }) {
     return id(this.id);
@@ -392,11 +426,17 @@ class _$BuildingId implements BuildingId {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id,
-            BuildingProfile profile, User owner)?
-        $default, {
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)?
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id,
+            BuildingProfile profile,
+            @JsonKey(toJson: _userToJson, fromJson: _userFromJson)
+                UserId owner)?
+        full,
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)?
         id,
     required TResult orElse(),
   }) {
@@ -408,8 +448,8 @@ class _$BuildingId implements BuildingId {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Building value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(Building value) full,
     required TResult Function(BuildingId value) id,
   }) {
     return id(this);
@@ -417,8 +457,8 @@ class _$BuildingId implements BuildingId {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Building value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Building value)? full,
     TResult Function(BuildingId value)? id,
     required TResult orElse(),
   }) {
@@ -434,16 +474,16 @@ class _$BuildingId implements BuildingId {
   }
 }
 
-abstract class BuildingId implements Building {
+abstract class BuildingId implements BuildingModel {
   const factory BuildingId(
-          {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required Id id}) =
-      _$BuildingId;
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required Id id}) = _$BuildingId;
 
   factory BuildingId.fromJson(Map<String, dynamic> json) =
       _$BuildingId.fromJson;
 
   @override
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   Id get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

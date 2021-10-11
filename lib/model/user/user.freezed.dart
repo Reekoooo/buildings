@@ -12,12 +12,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
+UserUnion _$UserUnionFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
-    case 'default':
-      return _User.fromJson(json);
+    case 'user':
+      return User.fromJson(json);
     case 'id':
       return UserId.fromJson(json);
+    case 'unauthenticated':
+      return UnAuthenticatedUser.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -25,27 +27,25 @@ User _$UserFromJson(Map<String, dynamic> json) {
 }
 
 /// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
+class _$UserUnionTearOff {
+  const _$UserUnionTearOff();
 
-  _User call(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  User user(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
           required Id id,
       @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
           UserProfileUnion profile = const EmptyUserProfile(),
       @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
           required Email email,
       required Role role,
-      required String token,
       List<Building> buildingOwner = const [],
       List<Flat> flatOwner = const [],
       List<Flat> flatResident = const []}) {
-    return _User(
+    return User(
       id: id,
       profile: profile,
       email: email,
       role: role,
-      token: token,
       buildingOwner: buildingOwner,
       flatOwner: flatOwner,
       flatResident: flatResident,
@@ -53,125 +53,115 @@ class _$UserTearOff {
   }
 
   UserId id(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required Id id}) {
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required Id id}) {
     return UserId(
       id: id,
     );
   }
 
-  User fromJson(Map<String, Object> json) {
-    return User.fromJson(json);
+  UnAuthenticatedUser unauthenticated() {
+    return const UnAuthenticatedUser();
+  }
+
+  UserUnion fromJson(Map<String, Object> json) {
+    return UserUnion.fromJson(json);
   }
 }
 
 /// @nodoc
-const $User = _$UserTearOff();
+const $UserUnion = _$UserUnionTearOff();
 
 /// @nodoc
-mixin _$User {
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
-  Id get id => throw _privateConstructorUsedError;
-
+mixin _$UserUnion {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
                 Id id,
             @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
                 UserProfileUnion profile,
             @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
                 Email email,
             Role role,
-            String token,
             List<Building> buildingOwner,
             List<Flat> flatOwner,
             List<Flat> flatResident)
-        $default, {
+        user,
     required TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)
         id,
+    required TResult Function() unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
                 Id id,
             @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
                 UserProfileUnion profile,
             @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
                 Email email,
             Role role,
-            String token,
             List<Building> buildingOwner,
             List<Flat> flatOwner,
             List<Flat> flatResident)?
-        $default, {
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)?
+        user,
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)?
         id,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_User value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(User value) user,
     required TResult Function(UserId value) id,
+    required TResult Function(UnAuthenticatedUser value) unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_User value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(User value)? user,
     TResult Function(UserId value)? id,
+    TResult Function(UnAuthenticatedUser value)? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserUnionCopyWith<$Res> {
+  factory $UserUnionCopyWith(UserUnion value, $Res Function(UserUnion) then) =
+      _$UserUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UserUnionCopyWithImpl<$Res> implements $UserUnionCopyWith<$Res> {
+  _$UserUnionCopyWithImpl(this._value, this._then);
+
+  final UserUnion _value;
+  // ignore: unused_field
+  final $Res Function(UserUnion) _then;
 }
 
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id});
-}
-
-/// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
-
-  final User _value;
-  // ignore: unused_field
-  final $Res Function(User) _then;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as Id,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
-      __$UserCopyWithImpl<$Res>;
-  @override
   $Res call(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
           Id id,
       @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
           UserProfileUnion profile,
       @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
           Email email,
       Role role,
-      String token,
       List<Building> buildingOwner,
       List<Flat> flatOwner,
       List<Flat> flatResident});
@@ -180,13 +170,13 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
-      : super(_value, (v) => _then(v as _User));
+class _$UserCopyWithImpl<$Res> extends _$UserUnionCopyWithImpl<$Res>
+    implements $UserCopyWith<$Res> {
+  _$UserCopyWithImpl(User _value, $Res Function(User) _then)
+      : super(_value, (v) => _then(v as User));
 
   @override
-  _User get _value => super._value as _User;
+  User get _value => super._value as User;
 
   @override
   $Res call({
@@ -194,12 +184,11 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? profile = freezed,
     Object? email = freezed,
     Object? role = freezed,
-    Object? token = freezed,
     Object? buildingOwner = freezed,
     Object? flatOwner = freezed,
     Object? flatResident = freezed,
   }) {
-    return _then(_User(
+    return _then(User(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -216,10 +205,6 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
       buildingOwner: buildingOwner == freezed
           ? _value.buildingOwner
           : buildingOwner // ignore: cast_nullable_to_non_nullable
@@ -246,25 +231,23 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, includeIfNull: false)
-class _$_User implements _User {
-  const _$_User(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+class _$User implements User {
+  const _$User(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
           required this.id,
       @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
           this.profile = const EmptyUserProfile(),
       @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
           required this.email,
       required this.role,
-      required this.token,
       this.buildingOwner = const [],
       this.flatOwner = const [],
       this.flatResident = const []});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserFromJson(json);
+  factory _$User.fromJson(Map<String, dynamic> json) => _$_$UserFromJson(json);
 
   @override
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   final Id id;
   @override
   @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
@@ -274,8 +257,6 @@ class _$_User implements _User {
   final Email email;
   @override
   final Role role;
-  @override
-  final String token;
   @JsonKey(defaultValue: const [])
   @override
   final List<Building> buildingOwner;
@@ -288,13 +269,13 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, profile: $profile, email: $email, role: $role, token: $token, buildingOwner: $buildingOwner, flatOwner: $flatOwner, flatResident: $flatResident)';
+    return 'UserUnion.user(id: $id, profile: $profile, email: $email, role: $role, buildingOwner: $buildingOwner, flatOwner: $flatOwner, flatResident: $flatResident)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _User &&
+        (other is User &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.profile, profile) ||
@@ -304,8 +285,6 @@ class _$_User implements _User {
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)) &&
             (identical(other.buildingOwner, buildingOwner) ||
                 const DeepCollectionEquality()
                     .equals(other.buildingOwner, buildingOwner)) &&
@@ -324,138 +303,138 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(profile) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(token) ^
       const DeepCollectionEquality().hash(buildingOwner) ^
       const DeepCollectionEquality().hash(flatOwner) ^
       const DeepCollectionEquality().hash(flatResident);
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith =>
-      __$UserCopyWithImpl<_User>(this, _$identity);
+  $UserCopyWith<User> get copyWith =>
+      _$UserCopyWithImpl<User>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
                 Id id,
             @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
                 UserProfileUnion profile,
             @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
                 Email email,
             Role role,
-            String token,
             List<Building> buildingOwner,
             List<Flat> flatOwner,
             List<Flat> flatResident)
-        $default, {
+        user,
     required TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)
         id,
+    required TResult Function() unauthenticated,
   }) {
-    return $default(this.id, profile, email, role, token, buildingOwner,
-        flatOwner, flatResident);
+    return user(
+        this.id, profile, email, role, buildingOwner, flatOwner, flatResident);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
                 Id id,
             @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
                 UserProfileUnion profile,
             @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
                 Email email,
             Role role,
-            String token,
             List<Building> buildingOwner,
             List<Flat> flatOwner,
             List<Flat> flatResident)?
-        $default, {
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)?
+        user,
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)?
         id,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(this.id, profile, email, role, token, buildingOwner,
-          flatOwner, flatResident);
+    if (user != null) {
+      return user(this.id, profile, email, role, buildingOwner, flatOwner,
+          flatResident);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_User value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(User value) user,
     required TResult Function(UserId value) id,
+    required TResult Function(UnAuthenticatedUser value) unauthenticated,
   }) {
-    return $default(this);
+    return user(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_User value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(User value)? user,
     TResult Function(UserId value)? id,
+    TResult Function(UnAuthenticatedUser value)? unauthenticated,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(this);
+    if (user != null) {
+      return user(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UserToJson(this)..['runtimeType'] = 'default';
+    return _$_$UserToJson(this)..['runtimeType'] = 'user';
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+abstract class User implements UserUnion {
+  const factory User(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
           required Id id,
       @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
           UserProfileUnion profile,
       @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
           required Email email,
       required Role role,
-      required String token,
       List<Building> buildingOwner,
       List<Flat> flatOwner,
-      List<Flat> flatResident}) = _$_User;
+      List<Flat> flatResident}) = _$User;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory User.fromJson(Map<String, dynamic> json) = _$User.fromJson;
 
-  @override
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   Id get id => throw _privateConstructorUsedError;
   @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
   UserProfileUnion get profile => throw _privateConstructorUsedError;
   @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
   Email get email => throw _privateConstructorUsedError;
   Role get role => throw _privateConstructorUsedError;
-  String get token => throw _privateConstructorUsedError;
   List<Building> get buildingOwner => throw _privateConstructorUsedError;
   List<Flat> get flatOwner => throw _privateConstructorUsedError;
   List<Flat> get flatResident => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
-  _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
+  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserIdCopyWith<$Res> implements $UserCopyWith<$Res> {
+abstract class $UserIdCopyWith<$Res> {
   factory $UserIdCopyWith(UserId value, $Res Function(UserId) then) =
       _$UserIdCopyWithImpl<$Res>;
-  @override
-  $Res call({@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id});
+  $Res call(
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson) Id id});
 }
 
 /// @nodoc
-class _$UserIdCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+class _$UserIdCopyWithImpl<$Res> extends _$UserUnionCopyWithImpl<$Res>
     implements $UserIdCopyWith<$Res> {
   _$UserIdCopyWithImpl(UserId _value, $Res Function(UserId) _then)
       : super(_value, (v) => _then(v as UserId));
@@ -480,18 +459,19 @@ class _$UserIdCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserId implements UserId {
   const _$UserId(
-      {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required this.id});
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required this.id});
 
   factory _$UserId.fromJson(Map<String, dynamic> json) =>
       _$_$UserIdFromJson(json);
 
   @override
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   final Id id;
 
   @override
   String toString() {
-    return 'User.id(id: $id)';
+    return 'UserUnion.id(id: $id)';
   }
 
   @override
@@ -513,45 +493,48 @@ class _$UserId implements UserId {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
                 Id id,
             @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
                 UserProfileUnion profile,
             @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
                 Email email,
             Role role,
-            String token,
             List<Building> buildingOwner,
             List<Flat> flatOwner,
             List<Flat> flatResident)
-        $default, {
+        user,
     required TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)
         id,
+    required TResult Function() unauthenticated,
   }) {
     return id(this.id);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
                 Id id,
             @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
                 UserProfileUnion profile,
             @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
                 Email email,
             Role role,
-            String token,
             List<Building> buildingOwner,
             List<Flat> flatOwner,
             List<Flat> flatResident)?
-        $default, {
-    TResult Function(@JsonKey(toJson: _idToJson, fromJson: _idFromJson) Id id)?
+        user,
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)?
         id,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
     if (id != null) {
@@ -562,18 +545,20 @@ class _$UserId implements UserId {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_User value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(User value) user,
     required TResult Function(UserId value) id,
+    required TResult Function(UnAuthenticatedUser value) unauthenticated,
   }) {
     return id(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_User value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(User value)? user,
     TResult Function(UserId value)? id,
+    TResult Function(UnAuthenticatedUser value)? unauthenticated,
     required TResult orElse(),
   }) {
     if (id != null) {
@@ -588,17 +573,145 @@ class _$UserId implements UserId {
   }
 }
 
-abstract class UserId implements User {
+abstract class UserId implements UserUnion {
   const factory UserId(
-          {@JsonKey(toJson: _idToJson, fromJson: _idFromJson) required Id id}) =
-      _$UserId;
+      {@JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+          required Id id}) = _$UserId;
 
   factory UserId.fromJson(Map<String, dynamic> json) = _$UserId.fromJson;
 
-  @override
-  @JsonKey(toJson: _idToJson, fromJson: _idFromJson)
+  @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
   Id get id => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $UserIdCopyWith<UserId> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UnAuthenticatedUserCopyWith<$Res> {
+  factory $UnAuthenticatedUserCopyWith(
+          UnAuthenticatedUser value, $Res Function(UnAuthenticatedUser) then) =
+      _$UnAuthenticatedUserCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UnAuthenticatedUserCopyWithImpl<$Res>
+    extends _$UserUnionCopyWithImpl<$Res>
+    implements $UnAuthenticatedUserCopyWith<$Res> {
+  _$UnAuthenticatedUserCopyWithImpl(
+      UnAuthenticatedUser _value, $Res Function(UnAuthenticatedUser) _then)
+      : super(_value, (v) => _then(v as UnAuthenticatedUser));
+
+  @override
+  UnAuthenticatedUser get _value => super._value as UnAuthenticatedUser;
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UnAuthenticatedUser implements UnAuthenticatedUser {
+  const _$UnAuthenticatedUser();
+
+  factory _$UnAuthenticatedUser.fromJson(Map<String, dynamic> json) =>
+      _$_$UnAuthenticatedUserFromJson(json);
+
+  @override
+  String toString() {
+    return 'UserUnion.unauthenticated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UnAuthenticatedUser);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id,
+            @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
+                UserProfileUnion profile,
+            @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
+                Email email,
+            Role role,
+            List<Building> buildingOwner,
+            List<Flat> flatOwner,
+            List<Flat> flatResident)
+        user,
+    required TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)
+        id,
+    required TResult Function() unauthenticated,
+  }) {
+    return unauthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id,
+            @JsonKey(toJson: _userProfileToJson, fromJson: _userProfileFromJson)
+                UserProfileUnion profile,
+            @JsonKey(toJson: _emailToJson, fromJson: _emailFromJson)
+                Email email,
+            Role role,
+            List<Building> buildingOwner,
+            List<Flat> flatOwner,
+            List<Flat> flatResident)?
+        user,
+    TResult Function(
+            @JsonKey(name: '_id', toJson: _idToJson, fromJson: _idFromJson)
+                Id id)?
+        id,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (unauthenticated != null) {
+      return unauthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(User value) user,
+    required TResult Function(UserId value) id,
+    required TResult Function(UnAuthenticatedUser value) unauthenticated,
+  }) {
+    return unauthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(User value)? user,
+    TResult Function(UserId value)? id,
+    TResult Function(UnAuthenticatedUser value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (unauthenticated != null) {
+      return unauthenticated(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$UnAuthenticatedUserToJson(this)
+      ..['runtimeType'] = 'unauthenticated';
+  }
+}
+
+abstract class UnAuthenticatedUser implements UserUnion {
+  const factory UnAuthenticatedUser() = _$UnAuthenticatedUser;
+
+  factory UnAuthenticatedUser.fromJson(Map<String, dynamic> json) =
+      _$UnAuthenticatedUser.fromJson;
 }

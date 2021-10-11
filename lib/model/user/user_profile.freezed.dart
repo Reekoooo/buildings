@@ -32,10 +32,13 @@ class _$UserProfileUnionTearOff {
       {@JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
           required FirstName firstName,
       @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-          required LastName lastName}) {
+          required LastName lastName,
+      @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+          String? profileImage}) {
     return UserProfile(
       firstName: firstName,
       lastName: lastName,
+      profileImage: profileImage,
     );
   }
 
@@ -59,7 +62,9 @@ mixin _$UserProfileUnion {
             @JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
                 FirstName firstName,
             @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-                LastName lastName)
+                LastName lastName,
+            @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+                String? profileImage)
         normal,
     required TResult Function() empty,
   }) =>
@@ -70,7 +75,9 @@ mixin _$UserProfileUnion {
             @JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
                 FirstName firstName,
             @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-                LastName lastName)?
+                LastName lastName,
+            @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+                String? profileImage)?
         normal,
     TResult Function()? empty,
     required TResult orElse(),
@@ -118,7 +125,9 @@ abstract class $UserProfileCopyWith<$Res> {
       {@JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
           FirstName firstName,
       @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-          LastName lastName});
+          LastName lastName,
+      @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+          String? profileImage});
 }
 
 /// @nodoc
@@ -136,6 +145,7 @@ class _$UserProfileCopyWithImpl<$Res>
   $Res call({
     Object? firstName = freezed,
     Object? lastName = freezed,
+    Object? profileImage = freezed,
   }) {
     return _then(UserProfile(
       firstName: firstName == freezed
@@ -146,6 +156,10 @@ class _$UserProfileCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as LastName,
+      profileImage: profileImage == freezed
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -157,7 +171,9 @@ class _$UserProfile implements UserProfile {
       {@JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
           required this.firstName,
       @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-          required this.lastName});
+          required this.lastName,
+      @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+          this.profileImage});
 
   factory _$UserProfile.fromJson(Map<String, dynamic> json) =>
       _$_$UserProfileFromJson(json);
@@ -168,10 +184,13 @@ class _$UserProfile implements UserProfile {
   @override
   @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
   final LastName lastName;
+  @override
+  @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+  final String? profileImage;
 
   @override
   String toString() {
-    return 'UserProfileUnion.normal(firstName: $firstName, lastName: $lastName)';
+    return 'UserProfileUnion.normal(firstName: $firstName, lastName: $lastName, profileImage: $profileImage)';
   }
 
   @override
@@ -183,14 +202,18 @@ class _$UserProfile implements UserProfile {
                     .equals(other.firstName, firstName)) &&
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)));
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.profileImage, profileImage) ||
+                const DeepCollectionEquality()
+                    .equals(other.profileImage, profileImage)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName);
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(profileImage);
 
   @JsonKey(ignore: true)
   @override
@@ -204,11 +227,13 @@ class _$UserProfile implements UserProfile {
             @JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
                 FirstName firstName,
             @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-                LastName lastName)
+                LastName lastName,
+            @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+                String? profileImage)
         normal,
     required TResult Function() empty,
   }) {
-    return normal(firstName, lastName);
+    return normal(firstName, lastName, profileImage);
   }
 
   @override
@@ -218,13 +243,15 @@ class _$UserProfile implements UserProfile {
             @JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
                 FirstName firstName,
             @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-                LastName lastName)?
+                LastName lastName,
+            @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+                String? profileImage)?
         normal,
     TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (normal != null) {
-      return normal(firstName, lastName);
+      return normal(firstName, lastName, profileImage);
     }
     return orElse();
   }
@@ -262,7 +289,9 @@ abstract class UserProfile implements UserProfileUnion {
       {@JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
           required FirstName firstName,
       @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-          required LastName lastName}) = _$UserProfile;
+          required LastName lastName,
+      @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+          String? profileImage}) = _$UserProfile;
 
   factory UserProfile.fromJson(Map<String, dynamic> json) =
       _$UserProfile.fromJson;
@@ -271,6 +300,8 @@ abstract class UserProfile implements UserProfileUnion {
   FirstName get firstName => throw _privateConstructorUsedError;
   @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
   LastName get lastName => throw _privateConstructorUsedError;
+  @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+  String? get profileImage => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserProfileCopyWith<UserProfile> get copyWith =>
       throw _privateConstructorUsedError;
@@ -323,7 +354,9 @@ class _$EmptyUserProfile implements EmptyUserProfile {
             @JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
                 FirstName firstName,
             @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-                LastName lastName)
+                LastName lastName,
+            @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+                String? profileImage)
         normal,
     required TResult Function() empty,
   }) {
@@ -337,7 +370,9 @@ class _$EmptyUserProfile implements EmptyUserProfile {
             @JsonKey(toJson: _firstNameToJson, fromJson: _firstNameFromJson)
                 FirstName firstName,
             @JsonKey(toJson: _lastNameToJson, fromJson: _lastNameFromJson)
-                LastName lastName)?
+                LastName lastName,
+            @JsonKey(toJson: _profileImageToJson, fromJson: _profileImageFromJson)
+                String? profileImage)?
         normal,
     TResult Function()? empty,
     required TResult orElse(),

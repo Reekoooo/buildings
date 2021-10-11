@@ -34,6 +34,13 @@ class _$PageConfigurationTearOff {
     );
   }
 
+  UserProfileConfig userProfile(
+      {PageAction currentPageAction = const NoPageAction()}) {
+    return UserProfileConfig(
+      currentPageAction: currentPageAction,
+    );
+  }
+
   HomeConfig home({PageAction currentPageAction = const NoPageAction()}) {
     return HomeConfig(
       currentPageAction: currentPageAction,
@@ -53,6 +60,7 @@ mixin _$PageConfiguration {
     required TResult Function(PageAction currentPageAction) splash,
     required TResult Function(PageAction currentPageAction) login,
     required TResult Function(PageAction currentPageAction) signUp,
+    required TResult Function(PageAction currentPageAction) userProfile,
     required TResult Function(PageAction currentPageAction) home,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +69,7 @@ mixin _$PageConfiguration {
     TResult Function(PageAction currentPageAction)? splash,
     TResult Function(PageAction currentPageAction)? login,
     TResult Function(PageAction currentPageAction)? signUp,
+    TResult Function(PageAction currentPageAction)? userProfile,
     TResult Function(PageAction currentPageAction)? home,
     required TResult orElse(),
   }) =>
@@ -70,6 +79,7 @@ mixin _$PageConfiguration {
     required TResult Function(SplashConfig value) splash,
     required TResult Function(LoginConfig value) login,
     required TResult Function(SignUpConfig value) signUp,
+    required TResult Function(UserProfileConfig value) userProfile,
     required TResult Function(HomeConfig value) home,
   }) =>
       throw _privateConstructorUsedError;
@@ -78,6 +88,7 @@ mixin _$PageConfiguration {
     TResult Function(SplashConfig value)? splash,
     TResult Function(LoginConfig value)? login,
     TResult Function(SignUpConfig value)? signUp,
+    TResult Function(UserProfileConfig value)? userProfile,
     TResult Function(HomeConfig value)? home,
     required TResult orElse(),
   }) =>
@@ -204,6 +215,7 @@ class _$SplashConfig extends SplashConfig {
     required TResult Function(PageAction currentPageAction) splash,
     required TResult Function(PageAction currentPageAction) login,
     required TResult Function(PageAction currentPageAction) signUp,
+    required TResult Function(PageAction currentPageAction) userProfile,
     required TResult Function(PageAction currentPageAction) home,
   }) {
     return splash(currentPageAction);
@@ -215,6 +227,7 @@ class _$SplashConfig extends SplashConfig {
     TResult Function(PageAction currentPageAction)? splash,
     TResult Function(PageAction currentPageAction)? login,
     TResult Function(PageAction currentPageAction)? signUp,
+    TResult Function(PageAction currentPageAction)? userProfile,
     TResult Function(PageAction currentPageAction)? home,
     required TResult orElse(),
   }) {
@@ -230,6 +243,7 @@ class _$SplashConfig extends SplashConfig {
     required TResult Function(SplashConfig value) splash,
     required TResult Function(LoginConfig value) login,
     required TResult Function(SignUpConfig value) signUp,
+    required TResult Function(UserProfileConfig value) userProfile,
     required TResult Function(HomeConfig value) home,
   }) {
     return splash(this);
@@ -241,6 +255,7 @@ class _$SplashConfig extends SplashConfig {
     TResult Function(SplashConfig value)? splash,
     TResult Function(LoginConfig value)? login,
     TResult Function(SignUpConfig value)? signUp,
+    TResult Function(UserProfileConfig value)? userProfile,
     TResult Function(HomeConfig value)? home,
     required TResult orElse(),
   }) {
@@ -340,6 +355,7 @@ class _$LoginConfig extends LoginConfig {
     required TResult Function(PageAction currentPageAction) splash,
     required TResult Function(PageAction currentPageAction) login,
     required TResult Function(PageAction currentPageAction) signUp,
+    required TResult Function(PageAction currentPageAction) userProfile,
     required TResult Function(PageAction currentPageAction) home,
   }) {
     return login(currentPageAction);
@@ -351,6 +367,7 @@ class _$LoginConfig extends LoginConfig {
     TResult Function(PageAction currentPageAction)? splash,
     TResult Function(PageAction currentPageAction)? login,
     TResult Function(PageAction currentPageAction)? signUp,
+    TResult Function(PageAction currentPageAction)? userProfile,
     TResult Function(PageAction currentPageAction)? home,
     required TResult orElse(),
   }) {
@@ -366,6 +383,7 @@ class _$LoginConfig extends LoginConfig {
     required TResult Function(SplashConfig value) splash,
     required TResult Function(LoginConfig value) login,
     required TResult Function(SignUpConfig value) signUp,
+    required TResult Function(UserProfileConfig value) userProfile,
     required TResult Function(HomeConfig value) home,
   }) {
     return login(this);
@@ -377,6 +395,7 @@ class _$LoginConfig extends LoginConfig {
     TResult Function(SplashConfig value)? splash,
     TResult Function(LoginConfig value)? login,
     TResult Function(SignUpConfig value)? signUp,
+    TResult Function(UserProfileConfig value)? userProfile,
     TResult Function(HomeConfig value)? home,
     required TResult orElse(),
   }) {
@@ -476,6 +495,7 @@ class _$SignUpConfig extends SignUpConfig {
     required TResult Function(PageAction currentPageAction) splash,
     required TResult Function(PageAction currentPageAction) login,
     required TResult Function(PageAction currentPageAction) signUp,
+    required TResult Function(PageAction currentPageAction) userProfile,
     required TResult Function(PageAction currentPageAction) home,
   }) {
     return signUp(currentPageAction);
@@ -487,6 +507,7 @@ class _$SignUpConfig extends SignUpConfig {
     TResult Function(PageAction currentPageAction)? splash,
     TResult Function(PageAction currentPageAction)? login,
     TResult Function(PageAction currentPageAction)? signUp,
+    TResult Function(PageAction currentPageAction)? userProfile,
     TResult Function(PageAction currentPageAction)? home,
     required TResult orElse(),
   }) {
@@ -502,6 +523,7 @@ class _$SignUpConfig extends SignUpConfig {
     required TResult Function(SplashConfig value) splash,
     required TResult Function(LoginConfig value) login,
     required TResult Function(SignUpConfig value) signUp,
+    required TResult Function(UserProfileConfig value) userProfile,
     required TResult Function(HomeConfig value) home,
   }) {
     return signUp(this);
@@ -513,6 +535,7 @@ class _$SignUpConfig extends SignUpConfig {
     TResult Function(SplashConfig value)? splash,
     TResult Function(LoginConfig value)? login,
     TResult Function(SignUpConfig value)? signUp,
+    TResult Function(UserProfileConfig value)? userProfile,
     TResult Function(HomeConfig value)? home,
     required TResult orElse(),
   }) {
@@ -532,6 +555,147 @@ abstract class SignUpConfig extends PageConfiguration {
   @override
   @JsonKey(ignore: true)
   $SignUpConfigCopyWith<SignUpConfig> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserProfileConfigCopyWith<$Res>
+    implements $PageConfigurationCopyWith<$Res> {
+  factory $UserProfileConfigCopyWith(
+          UserProfileConfig value, $Res Function(UserProfileConfig) then) =
+      _$UserProfileConfigCopyWithImpl<$Res>;
+  @override
+  $Res call({PageAction currentPageAction});
+
+  @override
+  $PageActionCopyWith<$Res> get currentPageAction;
+}
+
+/// @nodoc
+class _$UserProfileConfigCopyWithImpl<$Res>
+    extends _$PageConfigurationCopyWithImpl<$Res>
+    implements $UserProfileConfigCopyWith<$Res> {
+  _$UserProfileConfigCopyWithImpl(
+      UserProfileConfig _value, $Res Function(UserProfileConfig) _then)
+      : super(_value, (v) => _then(v as UserProfileConfig));
+
+  @override
+  UserProfileConfig get _value => super._value as UserProfileConfig;
+
+  @override
+  $Res call({
+    Object? currentPageAction = freezed,
+  }) {
+    return _then(UserProfileConfig(
+      currentPageAction: currentPageAction == freezed
+          ? _value.currentPageAction
+          : currentPageAction // ignore: cast_nullable_to_non_nullable
+              as PageAction,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserProfileConfig extends UserProfileConfig {
+  const _$UserProfileConfig({this.currentPageAction = const NoPageAction()})
+      : super._();
+
+  @JsonKey(defaultValue: const NoPageAction())
+  @override
+  final PageAction currentPageAction;
+
+  @override
+  String toString() {
+    return 'PageConfiguration.userProfile(currentPageAction: $currentPageAction)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserProfileConfig &&
+            (identical(other.currentPageAction, currentPageAction) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentPageAction, currentPageAction)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(currentPageAction);
+
+  @JsonKey(ignore: true)
+  @override
+  $UserProfileConfigCopyWith<UserProfileConfig> get copyWith =>
+      _$UserProfileConfigCopyWithImpl<UserProfileConfig>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(PageAction currentPageAction) splash,
+    required TResult Function(PageAction currentPageAction) login,
+    required TResult Function(PageAction currentPageAction) signUp,
+    required TResult Function(PageAction currentPageAction) userProfile,
+    required TResult Function(PageAction currentPageAction) home,
+  }) {
+    return userProfile(currentPageAction);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(PageAction currentPageAction)? splash,
+    TResult Function(PageAction currentPageAction)? login,
+    TResult Function(PageAction currentPageAction)? signUp,
+    TResult Function(PageAction currentPageAction)? userProfile,
+    TResult Function(PageAction currentPageAction)? home,
+    required TResult orElse(),
+  }) {
+    if (userProfile != null) {
+      return userProfile(currentPageAction);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SplashConfig value) splash,
+    required TResult Function(LoginConfig value) login,
+    required TResult Function(SignUpConfig value) signUp,
+    required TResult Function(UserProfileConfig value) userProfile,
+    required TResult Function(HomeConfig value) home,
+  }) {
+    return userProfile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SplashConfig value)? splash,
+    TResult Function(LoginConfig value)? login,
+    TResult Function(SignUpConfig value)? signUp,
+    TResult Function(UserProfileConfig value)? userProfile,
+    TResult Function(HomeConfig value)? home,
+    required TResult orElse(),
+  }) {
+    if (userProfile != null) {
+      return userProfile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserProfileConfig extends PageConfiguration {
+  const factory UserProfileConfig({PageAction currentPageAction}) =
+      _$UserProfileConfig;
+  const UserProfileConfig._() : super._();
+
+  @override
+  PageAction get currentPageAction => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $UserProfileConfigCopyWith<UserProfileConfig> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -611,6 +775,7 @@ class _$HomeConfig extends HomeConfig {
     required TResult Function(PageAction currentPageAction) splash,
     required TResult Function(PageAction currentPageAction) login,
     required TResult Function(PageAction currentPageAction) signUp,
+    required TResult Function(PageAction currentPageAction) userProfile,
     required TResult Function(PageAction currentPageAction) home,
   }) {
     return home(currentPageAction);
@@ -622,6 +787,7 @@ class _$HomeConfig extends HomeConfig {
     TResult Function(PageAction currentPageAction)? splash,
     TResult Function(PageAction currentPageAction)? login,
     TResult Function(PageAction currentPageAction)? signUp,
+    TResult Function(PageAction currentPageAction)? userProfile,
     TResult Function(PageAction currentPageAction)? home,
     required TResult orElse(),
   }) {
@@ -637,6 +803,7 @@ class _$HomeConfig extends HomeConfig {
     required TResult Function(SplashConfig value) splash,
     required TResult Function(LoginConfig value) login,
     required TResult Function(SignUpConfig value) signUp,
+    required TResult Function(UserProfileConfig value) userProfile,
     required TResult Function(HomeConfig value) home,
   }) {
     return home(this);
@@ -648,6 +815,7 @@ class _$HomeConfig extends HomeConfig {
     TResult Function(SplashConfig value)? splash,
     TResult Function(LoginConfig value)? login,
     TResult Function(SignUpConfig value)? signUp,
+    TResult Function(UserProfileConfig value)? userProfile,
     TResult Function(HomeConfig value)? home,
     required TResult orElse(),
   }) {

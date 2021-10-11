@@ -5,9 +5,6 @@ class BuildingParser extends RouteInformationParser<PageConfiguration>{
   @override
   Future<PageConfiguration> parseRouteInformation(RouteInformation routeInformation) async{
 
-    print ('parseRouterInformation is called ,with Location ${routeInformation.location}');
-
-
     final uri = Uri.parse(routeInformation.location ?? '');
     if (uri.pathSegments.isEmpty) return SplashConfig();//splashPageConfiguration;
 
@@ -17,6 +14,7 @@ class BuildingParser extends RouteInformationParser<PageConfiguration>{
       case SplashPath: return SplashConfig();//splashPageConfiguration;
       case LoginPath : return LoginConfig();//loginPageConfiguration;
       case SignUpPath : return SignUpConfig();//signUpPageConfiguration;
+      case UserProfilePath : return UserProfileConfig();
       case HomePath : return HomeConfig();//homePageConfiguration;
       default : return SplashConfig();//splashPageConfiguration;
     }
@@ -29,17 +27,8 @@ class BuildingParser extends RouteInformationParser<PageConfiguration>{
         splash: (splash)=>  splash.path,
         login: (login)=> login.path,
         signUp: (signUp)=>signUp.path,
+        userProfile: (userProfile) => userProfile.path,
         home: (home) => home.path);
     return RouteInformation(location: location);
-    // switch(configuration.uiPage){
-    //   case Pages.Splash:
-    //     return RouteInformation(location: SplashPath);
-    //   case Pages.Login:
-    //     return RouteInformation(location: LoginPath);
-    //   case Pages.SignUp:
-    //     return RouteInformation(location: SignUpPath);
-    //   case Pages.Home:
-    //     return RouteInformation(location: HomePath);
-    // }
   }
 }

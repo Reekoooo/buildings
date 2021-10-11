@@ -1,79 +1,56 @@
-import 'dart:async';
+import 'dart:io';
 
-import 'package:building/application/router/back_dispatcher.dart';
-import 'package:building/application/router/router_parser.dart';
-import 'package:building/application/router/ui_pages.dart';
-import 'package:building/domain/app_state.dart';
+import 'package:building/application/router/router_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uni_links/uni_links.dart';
-import 'application/router/router_delegate.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
-  runApp(BuildingApp());
+class MyHttpOverrides extends HttpOverrides{
+  ByteData data;
+  MyHttpOverrides(this.data);
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    context?.setTrustedCertificatesBytes(data.buffer.asUint8List(),password: 'Metmenow21021980');
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (
+        (X509Certificate cert,String host,int port)=>true
+    );
+
+  }
 }
 
-class BuildingApp extends StatefulWidget {
-  @override
-  _BuildingAppState createState() => _BuildingAppState();
+Future<bool> addSelfSignedCertificate()async{
+  ByteData data = await rootBundle.load('assets/raw/cert.p12');
+  HttpOverrides.global = new MyHttpOverrides(data);
+  return true;
 }
 
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  assert(await addSelfSignedCertificate());
+  runApp(ProviderScope(child: BuildingApp()));
+}
 
-
-class _BuildingAppState extends State<BuildingApp> {
-  final appState = AppState();
-  final parser = BuildingParser();
-  BuildingRouterDelegate? delegate ;
-  BuildingBackButtonDispatcher? dispatcher ;
-  StreamSubscription? _linkSubscription;
-
- @override
-  void initState() {
-    super.initState();
-    delegate = BuildingRouterDelegate(appState);
-    delegate?.setNewRoutePath(SplashConfig());
-    dispatcher = BuildingBackButtonDispatcher(delegate!);
-    initPlatformState();
-  }
+class BuildingApp extends ConsumerWidget {
+  const BuildingApp({Key? key}) : super(key: key);
 
   @override
-  void dispose() {
-    _linkSubscription?.cancel();
-    super.dispose();
-  } // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-
-   final initialUri = await getInitialUri() ?? Uri.parse('/');
-
-    delegate?.parseRoute(await getInitialUri() ?? Uri.parse('/'));
-    // Attach a listener to the string links stream
-    _linkSubscription = linkStream.listen((String? uri) {
-      if (!mounted) return;
-      setState(() {
-        delegate?.parseRoute(Uri.parse(uri ?? '') );
-      });
-    }, onError: (Object err) {
-      print('Got error $err');
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,watch) {
+    final delegate = watch(routerDelegateProvider);
+    final parser = watch(parserProvider);
+    final dispatcher = watch(dispatcherProvider);
     return  MaterialApp.router(
-          theme: ThemeData.dark(),
-          debugShowCheckedModeBanner: false,
-          routerDelegate:delegate!,
-          routeInformationParser: parser,
-          backButtonDispatcher:  dispatcher,
-
-
-        );
-      }
-
+      theme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      routerDelegate:delegate,
+      routeInformationParser: parser,
+      backButtonDispatcher:  dispatcher,
+    );
   }
-
-
-
+}
 
 // final localeNotifier = StateNotifierProvider((ref)=> LocaleNotifier());
 //

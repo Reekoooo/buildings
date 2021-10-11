@@ -165,9 +165,6 @@ abstract class _$FlatCopyWith<$Res> implements $FlatCopyWith<$Res> {
       @JsonKey(toJson: _balanceToJson, fromJson: _balanceFromJson)
           Balance balance,
       List<User> residents});
-
-  $BuildingCopyWith<$Res> get building;
-  $UserCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -214,20 +211,6 @@ class __$FlatCopyWithImpl<$Res> extends _$FlatCopyWithImpl<$Res>
           : residents // ignore: cast_nullable_to_non_nullable
               as List<User>,
     ));
-  }
-
-  @override
-  $BuildingCopyWith<$Res> get building {
-    return $BuildingCopyWith<$Res>(_value.building, (value) {
-      return _then(_value.copyWith(building: value));
-    });
-  }
-
-  @override
-  $UserCopyWith<$Res> get owner {
-    return $UserCopyWith<$Res>(_value.owner, (value) {
-      return _then(_value.copyWith(owner: value));
-    });
   }
 }
 
